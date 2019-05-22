@@ -12,14 +12,14 @@ ACCESS_KEY_SECRET: <your key secret>
 and then:
 
 ### List certificate
-`cert.sh`
+`./cert.sh`
 
 ### Request certificate
-`cert.sh new -d <domain>`
+`./cert.sh new -d <domain>`
 
 ### Renew certificate
-`cert.sh renew`
+`./cert.sh renew`
 
 ### Help
-`cert.sh -h|--help|help`
+`./cert.sh -h|--help|help`
 
