@@ -23,5 +23,12 @@ and then:
 ### Help
 `./cert.sh -h|--help|help`
 
+## Certificate files
+Certificate files will generate to directory `data` in root directory.
+
+* Certificate path: `data/live/<domain_name>/fullchain.pem`
+* Private key path: `data/live/<domain_name>/privkey.pem`
+
 ## Reference
 * [ywdblog/certbot-letencrypt-wildcardcertificates-alydns-au](https://github.com/ywdblog/certbot-letencrypt-wildcardcertificates-alydns-au)
+

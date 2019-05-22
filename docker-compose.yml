@@ -4,7 +4,7 @@ services:
   certbot:
     image: certbot/certbot:latest
     volumes:
-      - "./data/etc/:/etc/letsencrypt/"
+      - "./data/:/etc/letsencrypt/"
       - "./scripts/:/opt/scripts/"
     command: certificates
     env_file:
