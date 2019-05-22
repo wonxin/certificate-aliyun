@@ -1,0 +1,12 @@
+version: '3.5'
+
+services:
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - "./data/etc/:/etc/letsencrypt/"
+      - "./scripts/:/opt/scripts/"
+    command: certificates
+    env_file:
+      - ./aliyun_access_key
+

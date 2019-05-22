@@ -1,0 +1,10 @@
+# vim
+*~
+*.swo
+*.swp
+
+# key file
+/aliyun_access_key
+
+# certificate files
+/data
