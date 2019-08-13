@@ -1,8 +1,21 @@
 #!/bin/bash
 
-WORKDIR=$(dirname "$0")
-cd ${WORKDIR}
+# get work path
+cd $(dirname "$0")
+WORKDIR=$(pwd)
 
+# get aliyun access id & key
+source aliyun_access_key
+
+# docker run args
+DOCKER_RUN="docker run --rm \
+  -v ${WORKDIR}/data/:/etc/letsencrypt/ \
+  -v ${WORKDIR}/scripts/:/opt/scripts/ \
+  -e ACCESS_KEY_ID=${ALY_KEY_ID} \
+  -e ACCESS_KEY_SECRET=${ALY_KEY_SECRET} \
+  certbot/certbot:latest"
+
+# usage
 function usage() {
   echo "Usage: cert.sh COMMAND [OPTIONS] ..."
   echo -e "  - list, renew, new let's encrypt certificate.\n"
@@ -16,10 +29,10 @@ function usage() {
 
 case "$1" in
   list)
-    docker-compose -f docker-compose.yml run --rm certbot
+    ${DOCKER_RUN} certificates
     ;;
   renew)
-    docker-compose -f docker-compose.yml run --rm certbot renew \
+    ${DOCKER_RUN} renew \
         --manual --preferred-challenges dns --manual-auth-hook /opt/scripts/au.sh
     ;;
   new)
@@ -30,8 +43,8 @@ case "$1" in
         DOMAIN_NAME="$2"
         shift 2
 
-        docker-compose -f docker-compose.yml run --rm certbot certonly -d *.${DOMAIN_NAME} \
-          --manual -preferred-challenges dns --manual-auth-hook /opt/scripts/au.sh
+        ${DOCKER_RUN} certonly \
+          -d *.${DOMAIN_NAME} --manual -preferred-challenges dns --manual-auth-hook /opt/scripts/au.sh
         ;;
       *)
         echo -e "Error, Require domain parameter.\n"
@@ -44,7 +57,7 @@ case "$1" in
     usage
     ;;
   *)
-    docker-compose -f docker-compose.yml run --rm certbot
+    ${DOCKER_RUN} certificates
     ;;
 esac
 

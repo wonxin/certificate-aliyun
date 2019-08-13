@@ -5,8 +5,8 @@ List, new, renew let's encrypt wildcard certificate, domain on aliyun
 First, you need creat a file on root directory named `aliyun_access_key`, set aliyun access key in it:
 
 ```
-ACCESS_KEY_ID: <your key id>
-ACCESS_KEY_SECRET: <your key secret>
+ACCESS_KEY_ID=<your key id>
+ACCESS_KEY_SECRET=<your key secret>
 ```
 
 and then:
