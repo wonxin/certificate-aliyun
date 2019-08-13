@@ -1,16 +1,15 @@
 #!/bin/bash
 
 # get work path
-cd $(dirname "$0")
-WORKDIR=$(pwd)
+work_path=$(cd `dirname $0`; pwd)
 
 # get aliyun access id & key
 source aliyun_access_key
 
 # docker run args
 DOCKER_RUN="docker run --rm \
-  -v ${WORKDIR}/data/:/etc/letsencrypt/ \
-  -v ${WORKDIR}/scripts/:/opt/scripts/ \
+  -v ${work_path}/data/:/etc/letsencrypt/ \
+  -v ${work_path}/scripts/:/opt/scripts/ \
   -e ACCESS_KEY_ID=${ALY_KEY_ID} \
   -e ACCESS_KEY_SECRET=${ALY_KEY_SECRET} \
   certbot/certbot:latest"
