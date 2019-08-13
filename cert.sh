@@ -40,7 +40,7 @@ case "$1" in
         ;;
     esac
     ;;
-  -h | --help)
+  -h | --help | help)
     usage
     ;;
   *)
